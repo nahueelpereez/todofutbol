@@ -46,17 +46,8 @@ export class ListaCamisetasComponent {
     }
   ];
 
-  upQuantity(camiseta: Camiseta): void{
-    if(camiseta.cantidad < camiseta.stock)
-      camiseta.cantidad++;
+  maxReached(m: string){
+    alert(m);
   }
 
-  downQuantity(camiseta: Camiseta): void{
-    if(camiseta.cantidad > 0)
-      camiseta.cantidad--;
-  }
-
-  changeQuantity(event: { target: any; }, camiseta: Camiseta): void {
-    console.log(event);
-  }
 }
