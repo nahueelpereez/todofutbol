@@ -1,4 +1,5 @@
-<table class="table">
+<h1>Camisetas</h1>
+<table class="table text-center">
     <thead>
         <tr>
             <th>Imagen</th>
@@ -6,12 +7,13 @@
             <th>Modelo</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Cantidad</th>
         </tr>
     </thead>
     <tbody>
         @for (camiseta of camisetas; track camiseta.nombre){
             <tr [ngClass]="{'oferta': camiseta.oferta}">
-                <td><img [src]="camiseta.imagen" [alt]="camiseta.nombre"></td>
+                <td><img width="200" class="img-thumbnail" [src]="camiseta.imagen" [alt]="camiseta.nombre"></td>
                 <td>{{camiseta.nombre}}</td>
                 <td>{{camiseta.modelo}}</td>
                 <td>{{camiseta.precio | currency}}</td>
@@ -20,6 +22,10 @@
                 } @else {
                     <td><span class="badge bg-warning text-dark">SIN STOCK</span></td>
                 }
+                <td><button class="btn btn-primary btn-sm" (click)="downQuantity(camiseta)">-</button>
+                    <input type="text" [(ngModel)]="camiseta.cantidad" (keyup)="changeQuantity($event, camiseta)" maxlength="10">
+                    <button class="btn btn-primary btn-sm" (click)="upQuantity(camiseta)">+</button>
+                </td>
             </tr>
         } @empty {
             <tr>
