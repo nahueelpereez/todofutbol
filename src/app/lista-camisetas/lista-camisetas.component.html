@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Equipo</th>
+            <th>Modelo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (camiseta of camisetas; track camiseta.nombre){
+            <tr [ngClass]="{'oferta': camiseta.oferta}">
+                <td><img [src]="camiseta.imagen" [alt]="camiseta.nombre"></td>
+                <td>{{camiseta.nombre}}</td>
+                <td>{{camiseta.modelo}}</td>
+                <td>{{camiseta.precio | currency}}</td>
+                @if (camiseta.stock > 0) {
+                    <td>{{camiseta.stock}}</td>
+                } @else {
+                    <td><span class="badge bg-warning text-dark">SIN STOCK</span></td>
+                }
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="4">No hay camisetas para mostrar.</td>
+            </tr>
+        }
+    </tbody>
+</table>
