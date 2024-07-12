@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Camiseta } from './camiseta';
+import { CarritoCamisetaService } from '../carrito-camiseta.service';
 
 @Component({
   selector: 'app-lista-camisetas',
   templateUrl: './lista-camisetas.component.html',
   styleUrl: './lista-camisetas.component.scss'
 })
-export class ListaCamisetasComponent {
+export class ListaCamisetasComponent{
   camisetas: Camiseta[] = [
     {
       "nombre": "Argentina",
@@ -45,6 +46,15 @@ export class ListaCamisetasComponent {
       "cantidad": 0,
     }
   ];
+
+  constructor (private carrito: CarritoCamisetaService){
+  }
+
+  addToCarrito(camiseta: any): void {
+    this.carrito.addToCarrito(camiseta);
+    camiseta.stock -= camiseta.cantidad;
+    camiseta.cantidad = 0;
+  }
 
   maxReached(m: string){
     alert(m);

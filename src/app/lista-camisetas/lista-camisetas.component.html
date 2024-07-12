@@ -8,6 +8,7 @@
             <th>Precio</th>
             <th>Stock</th>
             <th>Cantidad</th>
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,9 @@
                 }
                 <td>
                     <app-input-integer [(cantidad)]="camiseta.cantidad" [max]="camiseta.stock" (maxReached)="maxReached($event)"></app-input-integer>
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="addToCarrito(camiseta)">Comprar</button>
                 </td>
             </tr>
         } @empty {
